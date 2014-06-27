@@ -1,4 +1,5 @@
-#artatus#: _verb_  
+#artatus
+__verb__  
 conjugation: _st conjugation_  
 voice: _transitive_  
 
