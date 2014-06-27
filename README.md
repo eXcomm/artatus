@@ -1,13 +1,11 @@
-artatus
-=======
+#artatus#: _verb_  
+conjugation: _st conjugation_  
+voice: _transitive_  
 
-verb
-conjugation: 1st conjugation
-voice: transitive
-Definitions:
-compress, abridge
-pack, limit, cramp
-wedge in, fit/close firmly, tighten
+Definitions: 
+  * compress, abridge;
+  * pack, limit, cramp;
+  * wedge in, fit/close firmly, tighten
 
 An non-namespaced implementation of the 3D bin packing problem i.e. given a list of items, how many boxes do you need to fit them all in.
 
