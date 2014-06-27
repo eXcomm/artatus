@@ -1,5 +1,6 @@
-#artatus#: _verb_  
-conjugation: _st conjugation_  
+#artatus
+__verb__  
+conjugation: _1st conjugation_  
 voice: _transitive_  
 
 Definitions: 
@@ -7,7 +8,7 @@ Definitions:
   * pack, limit, cramp;
   * wedge in, fit/close firmly, tighten
 
-An non-namespaced implementation of the 3D bin packing problem i.e. given a list of items, how many boxes do you need to fit them all in.
+An traditional (non-namespaced) implementation of the 3D bin packing problem i.e. given a list of items, how many boxes do you need to fit them all in.
 
 This implimentation is inspired heavily by [dvdoug](https://github.com/dvdoug)'s [BoxPacker](https://github.com/dvdoug/BoxPacker) but is both implimented as a practial solution and in a non-namespaced manner.
 
@@ -92,10 +93,7 @@ Basic usage then looks something like the below:
   /* $packedBox->getItems() contains the items that fit */
 ```
 
-artatus is designed to run calculations as efficiently as possible, the 7500+ tests in the test suite run in 11
-seconds on my workstation, giving a rate of approx ≈680 solutions/second which should be more than sufficient for
-most e-commerce stores :) If you do wish to benchmark the library to evaluate performance in your own scenarios, please
-disable Xdebug when doing so - in my experience the unit tests take 32x longer (11sec->360 sec) when Xdebug is loaded.
+artatus is designed to run calculations as efficiently as possible, the 7500+ tests in the test suite run in 11 seconds on my workstation, giving a rate of approx ≈680 solutions/second which should be more than sufficient for most e-commerce stores :) If you do wish to benchmark the library to evaluate performance in your own scenarios, please disable Xdebug when doing so - in my experience the unit tests take 32x longer (11sec->360 sec) when Xdebug is loaded.
 
 Requirements
 ------------
