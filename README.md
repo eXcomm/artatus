@@ -93,8 +93,6 @@ Basic usage then looks something like the below:
   /* $packedBox->getItems() contains the items that fit */
 ```
 
-artatus is designed to run calculations as efficiently as possible, the 7500+ tests in the test suite run in 11 seconds on my workstation, giving a rate of approx ≈680 solutions/second which should be more than sufficient for most e-commerce stores :) If you do wish to benchmark the library to evaluate performance in your own scenarios, please disable Xdebug when doing so - in my experience the unit tests take 32x longer (11sec->360 sec) when Xdebug is loaded.
-
 Requirements
 ------------
 
