@@ -13,6 +13,11 @@
     protected $boxes;
 
     /**
+     * Should I echo all over the show?
+     */
+	protected $debug = false;
+
+    /**
      * Constructor
      */
     public function __construct() {
@@ -29,7 +34,8 @@
       for ($i = 0; $i < $aQty; $i++) {
         $this->items->insert($aItem);
       }
-      echo ("added {$aQty} x {$aItem->getDescription()}");
+	  if ($this->debug)
+	      echo ("added {$aQty} x {$aItem->getDescription()}");
     }
 
     /**
@@ -51,13 +57,22 @@
       }
     }
 
+	/**
+     * Pooch with the debug setting
+     */
+
+	public function setDebug($debugValue) {
+	  $this->debug  = $debugValue;
+    }
+
     /**
      * Add box size
      * @param Box $aBox
      */
     public function addBox(ArtatusBox $aBox) {
       $this->boxes->insert($aBox);
-      echo("added box {$aBox->getReference()}");
+	  if ($this->debug)
+      	echo("added box {$aBox->getReference()}");
     }
 
     /**
@@ -82,7 +97,8 @@
         $packedBoxes = $this->redistributeWeight($packedBoxes);
       }
 
-      echo( "packing completed, {$packedBoxes->count()} boxes");
+	  if ($this->debug)
+      	echo( "packing completed, {$packedBoxes->count()} boxes");
       return $packedBoxes;
     }
 
@@ -140,7 +156,8 @@
      */
     public function redistributeWeight(ArtatusPackedBoxList $aPackedBoxes) {
       $targetWeight = $aPackedBoxes->getMeanWeight();
-      echo ("repacking for weight distribution, weight variance {$aPackedBoxes->getWeightVariance()}, target weight {$targetWeight}");
+	  if ($this->debug)
+      	echo ("repacking for weight distribution, weight variance {$aPackedBoxes->getWeightVariance()}, target weight {$targetWeight}");
 
       $packedBoxes = new ArtatusPackedBoxList;
 
@@ -161,7 +178,8 @@
 
       do { //Keep moving items from most overweight box to most underweight box
         $tryRepack = false;
-        echo ('boxes under/over target: ' . count($underWeightBoxes) . '/' . count($overWeightBoxes));
+	    if ($this->debug)
+          echo ('boxes under/over target: ' . count($underWeightBoxes) . '/' . count($overWeightBoxes));
 
         foreach ($underWeightBoxes as $u => $underWeightBox) {
           foreach ($overWeightBoxes as $o => $overWeightBox) {
@@ -216,7 +234,8 @@
      * @return ArtatusPackedBox packed box
      */
     public function packIntoBox(ArtatusBox $aBox, ArtatusItemList $aItems) {
-      echo("evaluating box {$aBox->getReference()}");
+	  if ($this->debug)
+        echo("evaluating box {$aBox->getReference()}");
 
       $packedItems = new ArtatusItemList;
       $remainingDepth = $aBox->getInnerDepth();
@@ -233,9 +252,11 @@
           break;
         }
 
-        echo( "evaluating item {$itemToPack->getDescription()}");
-        echo( "remaining width: {$remainingWidth}, length: {$remainingLength}, depth: {$remainingDepth}");
-        echo( "layerWidth: {$layerWidth}, layerLength: {$layerLength}, layerDepth: {$layerDepth}");
+	  	if ($this->debug) {
+        	echo( "evaluating item {$itemToPack->getDescription()}");
+	        echo( "remaining width: {$remainingWidth}, length: {$remainingLength}, depth: {$remainingDepth}");
+    	    echo( "layerWidth: {$layerWidth}, layerLength: {$layerLength}, layerDepth: {$layerDepth}");
+		}
 
         $itemWidth = $itemToPack->getWidth();
         $itemLength = $itemToPack->getLength();
@@ -251,13 +272,15 @@
           if ($fitsRotatedGap < 0 ||
               $fitsSameGap <= $fitsRotatedGap ||
               (!$aItems->isEmpty() && $aItems->top() == $itemToPack && $remainingLength >= 2 * $itemLength)) {
-            echo ("fits (better) unrotated");
+	  	    if ($this->debug)
+              echo ("fits (better) unrotated");
             $remainingLength -= $itemLength;
             $layerWidth += $itemWidth;
             $layerLength += $itemLength;
           }
           else {
-            echo ("fits (better) rotated");
+	  		if ($this->debug)
+            	echo ("fits (better) rotated");
             $remainingLength -= $itemWidth;
             $layerWidth += $itemLength;
             $layerLength += $itemWidth;
@@ -266,7 +289,8 @@
         }
         else {
           if (!$layerWidth) {
-            echo(  "doesn't fit on layer even when empty");
+	  		if ($this->debug)
+            	echo(  "doesn't fit on layer even when empty");
             break;
           }
 
@@ -275,10 +299,12 @@
           $remainingDepth -= $layerDepth;
 
           $layerWidth = $layerLength = $layerDepth = 0;
-          echo ("doesn't fit, so starting next vertical layer");
+	      if ($this->debug)
+            echo ("doesn't fit, so starting next vertical layer");
         }
       }
-      echo ("done with this box");
+	  if ($this->debug)
+        echo ("done with this box");
       return new ArtatusPackedBox($aBox, $packedItems, $remainingWidth, $remainingLength, $remainingDepth, $remainingWeight);
     }
 

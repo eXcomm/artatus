@@ -4,12 +4,13 @@
    * To figure out which boxes you need, and which items go into which box
    */
   $packer = new ArtatusPacker();
+ // $packer->setDebug(true);
   $packer->addBox(new ArtatusBox('No. 1 box', 300, 300, 10, 10, 296, 296, 8, 1000));
-  $packer->addBox(new ArtatusBox('No. 1 box', 300, 300, 10, 10, 296, 296, 8, 1000));
-  $packer->addBox(new ArtatusBox('No. 1 box', 300, 300, 10, 10, 296, 296, 8, 1000));
-  $packer->addBox(new ArtatusBox('No. 1 box', 300, 300, 10, 10, 296, 296, 8, 1000));
-  $packer->addBox(new ArtatusBox('No. 1 box', 300, 300, 10, 10, 296, 296, 8, 1000));
-  $packer->addBox(new ArtatusBox('No. 1 box', 300, 300, 10, 10, 296, 296, 8, 1000));
+  $packer->addBox(new ArtatusBox('No. 2 box', 300, 300, 10, 10, 296, 296, 8, 1000));
+  $packer->addBox(new ArtatusBox('No. 3 box', 300, 300, 10, 10, 296, 296, 8, 1000));
+  $packer->addBox(new ArtatusBox('No. 4 box', 300, 300, 10, 10, 296, 296, 8, 1000));
+  $packer->addBox(new ArtatusBox('No. 5 box', 300, 300, 10, 10, 296, 296, 8, 1000));
+  $packer->addBox(new ArtatusBox('No. 6 box', 300, 300, 10, 10, 296, 296, 8, 1000));
   $packer->addItem(new ArtatusItem('Item 1', 250, 250, 2, 200));
   $packer->addItem(new ArtatusItem('Item 2', 250, 250, 2, 200));
   $packer->addItem(new ArtatusItem('Item 3', 250, 250, 2, 200));
